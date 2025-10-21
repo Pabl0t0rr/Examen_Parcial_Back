@@ -19,6 +19,7 @@ type LD = {
     videoFormat : "NTSC" | "PAL"
 };
 
+//Array con los objetos de LD
 let ld_memory = [
     {id : 1, filmName : "Cars", rotationType : "CAV", region : "USA", lengthMinutes : 123, videoFormat : "NTSC"},
     {id : 2, filmName : "Cars2", rotationType : "CAV", region : "CAN", lengthMinutes : 133, videoFormat : "PAL"},
@@ -100,7 +101,7 @@ app.delete("/ld/:id", (req,res) => {
     }
 });
 
-const url = ["http://localhost:3000"];
+const url = ["http://localhost:3000"]; //Creacion de la url para probar mediante axios
 
 //Crecion de funcion para probar todos los metodos anteriores mediante el uso de axios
 const testApi = async () => {
@@ -115,7 +116,6 @@ const testApi = async () => {
         const urlTodosLD = url + "/ld";
         const getTodos_LD = (await axios.get(urlTodosLD)).data;
 
-
         //Post crear LD
         const newLD = {
             filmName : "Cars5", 
@@ -124,8 +124,8 @@ const testApi = async () => {
             lengthMinutes : 123,
             videoFormat : "NTSC"
         }
-        const urlCrearCharacter = urlTodosLD;
-        const post_Crear_LD = (await (axios.post(urlCrearCharacter, newLD))).data;
+        const urlCrearLD = urlTodosLD;
+        const post_Crear_LD = (await (axios.post(urlCrearLD, newLD))).data;
 
         //Get todos LD
         const getTodos_LD_2 = (await axios.get(urlTodosLD)).data;
@@ -159,6 +159,6 @@ const testApi = async () => {
 
 //Llamada a la funcion para probar las funciones de characters
 setTimeout(async () => {
-  const pruebaCharacters = await testApi();
-  console.log(pruebaCharacters);
+  const pruebaLD = await testApi();
+  console.log(pruebaLD);
 }, 1000);//Esperamos 1 seg
